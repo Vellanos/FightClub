@@ -36,9 +36,16 @@ class Duel
     #[ORM\JoinColumn(nullable: false)]
     private ?Fighter $fighter_2 = null;
 
+    /**
+     * @var Collection<int, Comment>
+     */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'duel', orphanRemoval: true)]
+    private Collection $comments;
+
     public function __construct()
     {
         $this->bets = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -120,6 +127,36 @@ class Duel
     public function setFighter2(?Fighter $fighter_2): static
     {
         $this->fighter_2 = $fighter_2;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setDuel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getDuel() === $this) {
+                $comment->setDuel(null);
+            }
+        }
 
         return $this;
     }
