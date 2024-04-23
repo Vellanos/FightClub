@@ -31,6 +31,9 @@ class Comment
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $edited = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +95,18 @@ class Comment
     public function setEdited(\DateTimeInterface $edited): static
     {
         $this->edited = $edited;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
 
         return $this;
     }
