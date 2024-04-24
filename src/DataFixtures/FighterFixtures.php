@@ -75,7 +75,7 @@ class FighterFixtures extends AbstractFixtures
             "david.png",
             "adam.png",
             "kevin.png",
-            "catherine.png"
+            "cathrine.png"
         ];
 
         for ($i = 0; $i < 14; $i++) {
@@ -84,7 +84,8 @@ class FighterFixtures extends AbstractFixtures
             $fighter->setFirstname($firstName[$i]);
             $fighter->setPseudo($pseudo[$i]);
             $fighter->setLevel($this->faker->numberBetween(1, 20));
-            $fighter->setPicture($picture[$i]);
+            $fighter->setImageName($picture[$i]);
+            $fighter->setUpdatedAt(new \DateTimeImmutable());
 
             $manager->persist($fighter);
             $this->setReference('fighter_' . $i, $fighter);
