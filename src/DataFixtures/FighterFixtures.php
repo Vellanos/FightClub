@@ -49,7 +49,7 @@ class FighterFixtures extends AbstractFixtures
             "La dragon ball à Z",
             "The DuckMan",
             "Le pokémon",
-            "Le maquetteur",
+            "El volcano",
             "La mascotte",
             "Coco le curieux",
             "L'abricot",
