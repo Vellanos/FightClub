@@ -33,8 +33,9 @@
 							</ul>
 						</div>
 					</div>
-					<div class="d-flex flex-row justify-content-center mt-2">
+					<div class="d-flex flex-row justify-content-center mt-2 gap-2">
 						<a class="btn bg-red-details font-weight-bolder" href="{{ path('app_profile', {'id': user.id}) }}">Modifier le profil</a>
+                        <a class="btn bg-grey-details font-weight-bolder" href="{{ path('app_profile_depot', {'id': user.id}) }}">Déposer</a>
 					</div>
 				</div>
 			</div>

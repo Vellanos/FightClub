@@ -35,8 +35,28 @@ nav {
   background-color: white;
 }
 
+.bg-white-details {
+  background-color: white;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.bg-white-details:hover {
+  background-color: white;
+  transform: scale(1.05);
+}
+
 .bg-grey-transparency {
   background-color: #d9d9d97a;
+}
+
+.bg-grey-details {
+  background-color: #c2c2c2;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.bg-grey:hover {
+  background-color: #c2c2c2;
+  transform: scale(1.05);
 }
 
 .font-weight-bolder {
