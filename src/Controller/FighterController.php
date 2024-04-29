@@ -27,6 +27,12 @@ class FighterController extends AbstractController
         $fighterRepository = $entityManager->getRepository(Fighter::class);
         $fighter = $fighterRepository->findOneBy(['id' => $id]);
 
+        if (!$fighter) {
+            return $this->redirectToRoute('app_fighter');
+        }
+
+        
+
         return $this->render('fighter/details.html.twig', [
             'fighter' => $fighter,
         ]);
