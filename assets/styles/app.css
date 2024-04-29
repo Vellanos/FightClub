@@ -54,8 +54,18 @@ nav {
   transition: background-color 0.3s, transform 0.3s;
 }
 
-.bg-grey:hover {
+.bg-grey-details:hover {
   background-color: #c2c2c2;
+  transform: scale(1.05);
+}
+
+.bg-green-details {
+  background-color: green;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.bg-green-details:hover {
+  background-color: green;
   transform: scale(1.05);
 }
 

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition du profil
+{% endblock %}
+
+{% block body %}
+	{% if user is not empty %}
+		<div class="container">
+			<div class="row justify-content-center mt-5">
+				<div class="col-md-6">
+					<h1 class="text-center mb-4">Modifier votre profil</h1>
+					<div class="formBgCreate">
+						{{ form_start(editForm, {'attr': {'class': 'form'}}) }}
+						<div class="mb-3">
+							{{ form_label(editForm.lastname, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+							{{ form_widget(editForm.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+							{{ form_errors(editForm.lastname) }}
+						</div>
+						<div class="mb-3">
+							{{ form_label(editForm.firstname, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+							{{ form_widget(editForm.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+							{{ form_errors(editForm.firstname) }}
+						</div>
+						<div class="mb-3">
+							{{ form_label(editForm.pseudo, 'Pseudo', {'label_attr': {'class': 'form-label'}}) }}
+							{{ form_widget(editForm.pseudo, {'attr': {'class': 'form-control', 'placeholder': 'Pseudo'}}) }}
+							{{ form_errors(editForm.pseudo) }}
+						</div>
+						<div class="d-flex justify-content-center gap-3">
+							<a class="btn bg-grey-details font-weight-bolder" href="{{ path('app_profile', {'id': user.id}) }}">Retour</a>
+							<button type="submit" class="btn bg-green-details font-weight-bolder">Editer</button>
+							<a href="{{ path('app_home') }}" class="btn bg-red-details font-weight-bolder">Supprimer</a>
+						</div>
+						{{ form_end(editForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<div class="container">
+			<div class="row justify-content-center mt-5">
+				<div class="col-md-6">
+					<div class="formBgCreate">
+						<h2 class="text-center">Non connecté, veuillez vous
+							<a href="{{ path('app_login')}}">connecter</a>
+						</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}
