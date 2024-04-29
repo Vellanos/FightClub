@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Duel
+{% endblock %}
+
+{% block body %}
+
+	<div class="d-flex flex-column align-items-center justify-content-center gap-5 mt-2 mb-2">
+
+		<div class="card duel-card d-flex align-items-center text-center">
+			<img src="{{ asset('pictures/' ~ duel.fighter1.imageName) }}" class="img-fluid img-fighter-bet" alt="fighter picture">
+			<div class="card-body">
+				<p class="font-weight-bolder">{{ duel.fighter1.firstname }}
+					"{{ duel.fighter1.pseudo }}"
+					{{ duel.fighter1.lastname }}</p>
+			</div>
+		</div>
+
+		<div class="cote-container-duel">
+			<a href="{{ path('app_bet', {'duel_id': duel.id, 'fighter_id': duel.fighter1.id}) }}" class="cote">
+				<p class="m-0 font-weight-bolder">{{ duel.fighter1.firstname }}</p>
+				<p class="m-0 font-weight-bolder">{{ cotes[0] }}</p>
+			</a>
+			<div class="d-flex flex-column align-items-center justify-content-center">
+				<p class="m-0 font-weight-bolder">{{ duel.date|date('m-d') }}</p>
+				<p class="m-0 font-weight-bolder">{{ duel.date|date('H') }}h{{ duel.date|date('i') }}</p>
+			</div>
+			<a href="{{ path('app_bet', {'duel_id': duel.id, 'fighter_id': duel.fighter2.id}) }}" class="cote">
+				<p class="m-0 font-weight-bolder">{{ duel.fighter2.firstname }}</p>
+				<p class="m-0 font-weight-bolder">{{ cotes[1] }}</p>
+			</a>
+		</div>
+
+		<div class="card duel-card d-flex align-items-center text-center pb-3">
+			<div class="card-body">
+				<p class="font-weight-bolder">{{ duel.fighter2.firstname }}
+					"{{ duel.fighter2.pseudo }}"
+					{{ duel.fighter2.lastname }}</p>
+			</div>
+			<img src="{{ asset('pictures/' ~ duel.fighter2.imageName) }}" class="img-fluid img-fighter-bet" alt="fighter picture">
+
+		</div>
+	</div>
+
+
+{% endblock %}

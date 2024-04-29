@@ -8,6 +8,10 @@ a {
   color: inherit;
 }
 
+body {
+  padding-top: 85px;
+}
+
 nav {
   height: 10dvh;
 }
@@ -153,10 +157,23 @@ nav {
   object-fit: cover;
 }
 
+.img-fighter-bet {
+  max-width: 225px;
+  max-height: 225px;
+  object-fit: cover;
+}
+
 .cote-container {
   display: flex;
   justify-content: center;
   gap: 5%;
+}
+
+.cote-container-duel {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  min-width: 100px;
 }
 
 .cote {
@@ -170,6 +187,11 @@ nav {
 
 .height-details {
   height: 70vh;
+}
+
+.duel-card {
+  width: 40%;
+  min-width: 250px;
 }
 
 @media (max-width: 430px) {

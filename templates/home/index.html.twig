@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-center">
         <div class="card-wrapper d-flex flex-wrap justify-content-center">
             {% for duel in duels %}
-                <a href="#" class="card-home">
+                <a href="{{ path('app_duel', {'id': duel.id}) }}" class="card-home">
                     <img src="{{ asset('pictures/' ~ duel.fighter1.imageName) }}" class="img-fluid img-home" alt="fighter picture">
                     <div class="card-body-home">
                         <div class="d-flex flex-column align-items-center">

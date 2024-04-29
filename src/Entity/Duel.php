@@ -42,6 +42,9 @@ class Duel
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'duel', orphanRemoval: true)]
     private Collection $comments;
 
+    #[ORM\Column]
+    private ?bool $status = null;
+
     public function __construct()
     {
         $this->bets = new ArrayCollection();
@@ -157,6 +160,18 @@ class Duel
                 $comment->setDuel(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

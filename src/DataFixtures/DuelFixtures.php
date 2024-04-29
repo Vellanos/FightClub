@@ -36,6 +36,7 @@ class DuelFixtures extends AbstractFixtures implements DependentFixtureInterface
             $duel->setFighter2($fighter2);
             $duel->setDate($this->faker->dateTimeBetween('+1 week', '+3 week'));
             $duel->setPicture($picture[$this->faker->numberBetween(0, 4)]);
+            $duel->setStatus(1);
 
             $manager->persist($duel);
 
