@@ -8,9 +8,9 @@
     <div class="d-flex justify-content-center">
         <div class="card-wrapper d-flex flex-wrap justify-content-center">
             {% for duel in duels %}
-                <a href="#" class="card">
-                    <img src="{{ asset('pictures/' ~ duel.fighter1.imageName) }}" class="img-fluid img-home" alt="...">
-                    <div class="card-body">
+                <a href="#" class="card-home">
+                    <img src="{{ asset('pictures/' ~ duel.fighter1.imageName) }}" class="img-fluid img-home" alt="fighter picture">
+                    <div class="card-body-home">
                         <div class="d-flex flex-column align-items-center">
                             <p class="font-weight-bolder">{{ duel.fighter1.firstname }} "{{ duel.fighter1.pseudo }}" {{ duel.fighter1.lastname }}</p>
                             <p class="font-weight-bolder">VS</p>
@@ -36,8 +36,8 @@
         </div>
     </div>
     {# Section de débogage #}
-    <div class="debugBox">
+    {# <div class="debugBox">
         <h2>Debug</h2>
         <pre>{{dump(cotes)}}</pre>
-    </div>
+    </div> #}
 {% endblock %}

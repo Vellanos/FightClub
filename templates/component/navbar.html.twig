@@ -10,7 +10,10 @@
 			<div class="collapse navbar-collapse flex-column flex-lg-row justify-content-between" id="navbarNav">
 				<ul class="navbar-nav flex-column flex-lg-row align-items-lg-center">
 					<li class="nav-item">
-						<a class="nav-link active text-white font-weight-bolder" aria-current="page" href="{{ path('app_home') }}">Combattants</a>
+						<a class="nav-link active text-white font-weight-bolder" aria-current="page" href="{{ path('app_fighter') }}">Combattants</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active text-white font-weight-bolder" aria-current="page" href="{{ path('app_home') }}">Combats</a>
 					</li>
 					{% if app.user %}
 						<li class="nav-item d-lg-none">

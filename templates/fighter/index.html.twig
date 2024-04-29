@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Combattants
+{% endblock %}
+
+{% block body %}
+
+	<div class="card-wrapper-fighter">
+		{% for fighter in fighters %}
+			<a href="#" class="card-fighter bg-grey-transparency ">
+				<img src="{{ asset('pictures/' ~ fighter.imageName) }}" class="img-fluid img-fighter" alt="fighter picture">
+				<div class="card-body">
+					<p class="font-weight-bolder">{{ fighter.firstname }} "{{ fighter.pseudo }}" {{ fighter.lastname }}</p>
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+
+{% endblock %}
