@@ -52,6 +52,12 @@ class Fighter
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column]
+    private ?int $victory = null;
+
+    #[ORM\Column]
+    private ?int $defeat = null;
+
     public function __construct()
     {
         $this->bets = new ArrayCollection();
@@ -205,6 +211,30 @@ class Fighter
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getVictory(): ?int
+    {
+        return $this->victory;
+    }
+
+    public function setVictory(int $victory): static
+    {
+        $this->victory = $victory;
+
+        return $this;
+    }
+
+    public function getDefeat(): ?int
+    {
+        return $this->defeat;
+    }
+
+    public function setDefeat(int $defeat): static
+    {
+        $this->defeat = $defeat;
 
         return $this;
     }

@@ -7,7 +7,7 @@
 
 	<div class="card-wrapper-fighter">
 		{% for fighter in fighters %}
-			<a href="#" class="card-fighter bg-grey-transparency ">
+			<a href="{{ path('app_fighter_details', {'id': fighter.id}) }}" class="card-fighter bg-grey-transparency ">
 				<img src="{{ asset('pictures/' ~ fighter.imageName) }}" class="img-fluid img-fighter" alt="fighter picture">
 				<div class="card-body">
 					<p class="font-weight-bolder">{{ fighter.firstname }} "{{ fighter.pseudo }}" {{ fighter.lastname }}</p>

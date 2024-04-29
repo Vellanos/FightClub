@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NOM COMBATTANTA
+{% endblock %}
+
+{% block body %}
+	<div class="d-flex justify-content-center align-items-center height-details">
+		<div class="card-fighter-details bg-grey-transparency ">
+			<div>
+				<img src="{{ asset('pictures/' ~ fighter.imageName) }}" class="img-fluid img-fighter-details" alt="fighter picture">
+				<div class="card-body">
+					<p class="font-weight-bolder">{{ fighter.firstname }}
+						"{{ fighter.pseudo }}"
+						{{ fighter.lastname }}</p>
+					<p class="font-weight-bolder">Niveau :
+						{{ fighter.level }}</p>
+					<p class="font-weight-bolder">Nombre de victoire(s) :
+						{{ fighter.victory }}</p>
+					<p class="font-weight-bolder">Nombre de défaites(s) :
+						{{ fighter.defeat }}</p>
+                    <a href="{{ path('app_fighter') }}" class="btn bg-red-details font-weight-bolder">Retour</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

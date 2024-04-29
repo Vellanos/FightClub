@@ -21,6 +21,16 @@ nav {
   background-color: #d2161e;
 }
 
+.bg-red-details {
+  background-color: #d2161e;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.bg-red-details:hover {
+  background-color: #d2161e;
+  transform: scale(1.05);
+}
+
 .bg-white {
   background-color: white;
 }
@@ -75,6 +85,18 @@ nav {
   background-color: #f0f0f0;
   transform: scale(1.05);
 }
+
+.card-fighter-details {
+  display: flex;
+  width: 80%;
+  height: 80vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  transition: background-color 0.3s, transform 0.3s;
+}
 .card-body-home {
   width: 75%;
   text-align: center;
@@ -95,6 +117,12 @@ nav {
   object-fit: cover;
 }
 
+.img-fighter-details {
+  max-width: 250px;
+  max-height: 250px;
+  object-fit: cover;
+}
+
 .cote-container {
   display: flex;
   justify-content: center;
@@ -108,6 +136,10 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.height-details {
+  height: 70vh;
 }
 
 @media (max-width: 430px) {

@@ -86,6 +86,9 @@ class FighterFixtures extends AbstractFixtures
             $fighter->setLevel($this->faker->numberBetween(1, 20));
             $fighter->setImageName($picture[$i]);
             $fighter->setUpdatedAt(new \DateTimeImmutable());
+            $fighter->setVictory(0);
+            $fighter->setDefeat(0);
+
 
             $manager->persist($fighter);
             $this->setReference('fighter_' . $i, $fighter);

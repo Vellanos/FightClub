@@ -20,4 +20,15 @@ class FighterController extends AbstractController
             'fighters' => $fighters,
         ]);
     }
+
+    #[Route('/fighter/{id}', name: 'app_fighter_details')]
+    public function fighterDetails($id, EntityManagerInterface $entityManager): Response
+    {
+        $fighterRepository = $entityManager->getRepository(Fighter::class);
+        $fighter = $fighterRepository->findOneBy(['id' => $id]);
+
+        return $this->render('fighter/details.html.twig', [
+            'fighter' => $fighter,
+        ]);
+    }
 }
