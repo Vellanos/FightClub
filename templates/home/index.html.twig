@@ -5,39 +5,39 @@
 
 {% block body %}
 
-	<div class="d-flex justify-content-center">
-		<div class="card-wrapper d-flex flex-wrap justify-content-center">
-			{% for duel in duels %}
-				<a href="#" class="card">
-					<img src="{{ asset('pictures/' ~ duel.fighter1.imageName) }}" class="img-fluid img-home" alt="...">
-					<div class="card-body">
-						<div class="d-flex flex-column align-items-center">
-							<p class="font-weight-bolder">{{ duel.fighter1.firstname }} "{{ duel.fighter1.pseudo }}" {{ duel.fighter1.lastname }}</p>
-							<p class="font-weight-bolder">VS</p>
-							<p class="font-weight-bolder">{{ duel.fighter2.firstname }} "{{ duel.fighter2.pseudo }}" {{ duel.fighter2.lastname }}</p>
-						</div>
-						<div class="cote-container">
-							<div class="cote">
-								<p class="m-0 font-weight-bolder">{{ duel.fighter1.firstname }}</p>
-								<p class="m-0 font-weight-bolder">2,35</p>
-							</div>
-							<div class="d-flex flex-column align-items-center justify-content-center">
-								<p class="m-0 font-weight-bolder">{{ duel.date|date('m-d') }}</p>
-								<p class="m-0 font-weight-bolder">{{ duel.date|date('H') }}h{{ duel.date|date('i') }}</p>
-							</div>
-							<div class="cote">
-								<p class="m-0 font-weight-bolder">{{ duel.fighter2.firstname }}</p>
-								<p class="m-0 font-weight-bolder">1,35</p>
-							</div>
-						</div>
-					</div>
-				</a>
-			{% endfor %}
-		</div>
-	</div>
-	{# Section de débogage #}
-	<div class="debugBox">
-		<h2>Debug</h2>
-		<pre>{{dump(duels)}}</pre>
-	</div>
+    <div class="d-flex justify-content-center">
+        <div class="card-wrapper d-flex flex-wrap justify-content-center">
+            {% for duel in duels %}
+                <a href="#" class="card">
+                    <img src="{{ asset('pictures/' ~ duel.fighter1.imageName) }}" class="img-fluid img-home" alt="...">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center">
+                            <p class="font-weight-bolder">{{ duel.fighter1.firstname }} "{{ duel.fighter1.pseudo }}" {{ duel.fighter1.lastname }}</p>
+                            <p class="font-weight-bolder">VS</p>
+                            <p class="font-weight-bolder">{{ duel.fighter2.firstname }} "{{ duel.fighter2.pseudo }}" {{ duel.fighter2.lastname }}</p>
+                        </div>
+                        <div class="cote-container">
+                            <div class="cote">
+                                <p class="m-0 font-weight-bolder">{{ duel.fighter1.firstname }}</p>
+                                <p class="m-0 font-weight-bolder">{{ cotes[loop.index0][0] }}</p>
+                            </div>
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <p class="m-0 font-weight-bolder">{{ duel.date|date('m-d') }}</p>
+                                <p class="m-0 font-weight-bolder">{{ duel.date|date('H') }}h{{ duel.date|date('i') }}</p>
+                            </div>
+                            <div class="cote">
+                                <p class="m-0 font-weight-bolder">{{ duel.fighter2.firstname }}</p>
+                                <p class="m-0 font-weight-bolder">{{ cotes[loop.index0][1] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    {# Section de débogage #}
+    <div class="debugBox">
+        <h2>Debug</h2>
+        <pre>{{dump(cotes)}}</pre>
+    </div>
 {% endblock %}
