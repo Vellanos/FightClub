@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BetRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BetRepository::class)]
@@ -30,6 +31,12 @@ class Bet
     #[ORM\ManyToOne(inversedBy: 'bets')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Fighter $fighter = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $gain = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
 
     public function getId(): ?int
     {
@@ -92,6 +99,30 @@ class Bet
     public function setFighter(?Fighter $fighter): static
     {
         $this->fighter = $fighter;
+
+        return $this;
+    }
+
+    public function getGain(): ?float
+    {
+        return $this->gain;
+    }
+
+    public function setGain(?float $gain): static
+    {
+        $this->gain = $gain;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): static
+    {
+        $this->date = $date;
 
         return $this;
     }

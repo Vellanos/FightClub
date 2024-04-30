@@ -48,7 +48,7 @@ class FighterFixtures extends AbstractFixtures
             "Le no lâcheur",
             "La dragon ball à Z",
             "The DuckMan",
-            "Le pokémon",
+            "Display block",
             "El volcano",
             "La mascotte",
             "Coco le curieux",
@@ -56,7 +56,7 @@ class FighterFixtures extends AbstractFixtures
             "La fusée",
             "Lucastagne",
             "L'abeille",
-            "Le vier de combat",
+            "Ay cono",
             "La turbomachine",
             "La patronne"
         ];

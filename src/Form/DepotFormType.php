@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class DepotFormType extends AbstractType
 {
@@ -18,8 +19,12 @@ class DepotFormType extends AbstractType
             ->add('wallet', null, [
                 'constraints' => [
                     new NotBlank(),
-                    new Type(['type' => 'number', 'message' => 'Le montant doit être un entier.']),
-                    new GreaterThan(['value' => 0, 'message' => 'Le montant doit être supérieur à zéro.'])
+                    new Type(['type' => 'number', 'message' => 'Le montant doit être un nombre.']),
+                    new GreaterThan(['value' => 0, 'message' => 'Le montant doit être supérieur à zéro.']),
+                    new Regex([
+                        'pattern' => '/^\d+([\.,]\d{1,2})?$/',
+                        'message' => 'Le montant doit avoir au maximum deux chiffres après le séparateur décimal.'
+                    ]),
                 ],
             ])
         ;

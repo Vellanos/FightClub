@@ -48,7 +48,7 @@ class DuelController extends AbstractController
     }
 
     #[Route('/duel/{duel_id}/{fighter_id}', name: 'app_bet', priority:10)]
-    public function betDuel($duel_id,$fighter_id, EntityManagerInterface $entityManager, Request $request, SecurityBundleSecurity $security): Response
+    public function betDuel($duel_id, $fighter_id, EntityManagerInterface $entityManager, Request $request, SecurityBundleSecurity $security): Response
     {
         $duelRepository = $entityManager->getRepository(Duel::class);
         $duel = $duelRepository->find($duel_id);
@@ -81,6 +81,7 @@ class DuelController extends AbstractController
 
             $bet->setBetValue($form['bet_value']->getData());
             $bet->setStatus(1);
+            $bet->setDate(new \DateTime);
             $bet->setUser($this->getUser());
             $bet->setDuel($duel);
             $bet->setFighter($fighter);

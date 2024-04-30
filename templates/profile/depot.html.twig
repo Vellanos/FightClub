@@ -12,7 +12,7 @@
 					{{ form_start(editForm, {'attr': {'class': 'form'}}) }}
 					<div class="mb-3">
 						{{ form_label(editForm.wallet, 'Montant à déposer', {'label_attr': {'class': 'form-label'}}) }}
-						{{ form_widget(editForm.wallet, {'attr': {'class': 'form-control text-center ', 'placeholder': '0€', 'type': 'number', 'min': '0'}}) }}
+						{{ form_widget(editForm.wallet, {'attr': {'class': 'form-control text-center ', 'placeholder': '0.00€', 'type': 'number', 'min': '0'}}) }}
 						{{ form_errors(editForm.wallet) }}
 					</div>
 					<div class="text-center">

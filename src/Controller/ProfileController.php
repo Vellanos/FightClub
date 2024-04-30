@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Bet;
 use App\Entity\User;
 use App\Form\DepotFormType;
 use App\Form\ProfileFormType;
@@ -21,6 +22,10 @@ class ProfileController extends AbstractController
         $userRepository = $entityManager->getRepository(User::class);
         $user = $userRepository->find($id);
 
+        $betRepository = $entityManager->getRepository(Bet::class);
+        $active_bets = $betRepository->findBy(['user' => $id, 'status' => 1]);
+        $history_bets = $betRepository->findBy(['user' => $id, 'status' => 0]);
+
         if (!$user) {
             return $this->redirectToRoute('app_home');
         }
@@ -34,6 +39,8 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/index.html.twig', [
             'user' => $user,
+            'active_bets' => $active_bets,
+            'history_bets' => $history_bets
         ]);
     }
 

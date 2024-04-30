@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Type;
 
 class BetFormType extends AbstractType
@@ -30,9 +31,13 @@ class BetFormType extends AbstractType
             ->add('bet_value', null, [
                 'constraints' => [
                     new NotBlank(),
-                    new Type(['type' => 'number', 'message' => 'Le montant doit être un entier.']),
+                    new Type(['type' => 'number', 'message' => 'Le montant doit être un nombre.']),
                     new GreaterThan(['value' => 0, 'message' => 'Le montant doit être supérieur à zéro.']),
-                    new LessThanOrEqual(['value' => $walletUser, 'message' => 'Le montant ne peut pas dépasser le montant de votre wallet.']) 
+                    new LessThanOrEqual(['value' => $walletUser, 'message' => 'Le montant ne peut pas dépasser le montant de votre wallet.']) ,
+                    new Regex([
+                        'pattern' => '/^\d+([\.,]\d{1,2})?$/',
+                        'message' => 'Le montant doit avoir au maximum deux chiffres après le séparateur décimal.'
+                    ]),
                 ],
             ])
         ;
