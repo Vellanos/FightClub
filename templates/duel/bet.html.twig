@@ -4,22 +4,33 @@
 {% endblock %}
 
 {% block body %}
-		<div class="container">
-			<div class="row justify-content-center mt-5">
-				<div class="col-md-6">
+	<div class="container">
+		<div class="row justify-content-center mt-5">
+			<div class="col-md-6">
+				<div class="d-flex flex-column justify-content-center align-items-center">
 					<h2 class="text-center mb-4">Quel montant veux-tu parier ?</h2>
-					{{ form_start(createForm, {'attr': {'class': 'form'}}) }}
-					<div class="mb-3">
-						{{ form_label(createForm.bet_value, 'Montant à parier', {'label_attr': {'class': 'form-label'}}) }}
-						{{ form_widget(createForm.bet_value, {'attr': {'class': 'form-control text-center ', 'placeholder': '0€', 'type': 'number', 'min': '0'}}) }}
-						{{ form_errors(createForm.bet_value) }}
+					<div class="d-flex justify-content-center align-items-center">
+						<p class="me-2 font-weight-bolder">Montant de votre wallet
+						</p>
+						<p class="text-center wallet font-weight-bolder">{{user.wallet}}€</p>
+						<a href="{{ path('app_profile_depot', {'id': user.id}) }}">
+							<p class="text-center bg-red wallet-plus">+</p>
+						</a>
 					</div>
-					<div class="text-center">
-						<button type="submit" class="btn bg-red-details font-weight-bolder">Déposer</button>
-                        <a class="btn bg-grey-details font-weight-bolder" href="{{ path('app_profile', {'id': user.id}) }}">Retour</a>
-					</div>
-					{{ form_end(createForm) }}
+
 				</div>
+				{{ form_start(createForm, {'attr': {'class': 'form'}}) }}
+				<div class="mb-3">
+					{{ form_label(createForm.bet_value, 'Montant à parier', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(createForm.bet_value, {'attr': {'class': 'form-control text-center ', 'placeholder': '0€', 'type': 'number', 'min': '0'}}) }}
+					{{ form_errors(createForm.bet_value) }}
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn bg-red-details font-weight-bolder">Parier</button>
+					<a class="btn bg-grey-details font-weight-bolder" href="{{ path('app_profile', {'id': user.id}) }}">Retour</a>
+				</div>
+				{{ form_end(createForm) }}
 			</div>
 		</div>
+	</div>
 {% endblock %}
