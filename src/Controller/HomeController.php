@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Duel;
+use App\Service\DuelService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,8 +11,16 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
+
+    private $duelService;
+
+    public function __construct(DuelService $duelService)
+    {
+        $this->duelService = $duelService;
+    }
+
     #[Route('/', name: 'app_home')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager,DuelService $duelService): Response
     {
         $duelRepository = $entityManager->getRepository(Duel::class);
         $duels = $duelRepository->findBy(['status' => 1]);
@@ -26,7 +35,7 @@ class HomeController extends AbstractController
             $fighter2 = $duel->getFighter2();
             $level_2 = $fighter2->getLevel();
 
-            $cotes[$index] = $this->calculerCote($level_1, $level_2);
+            $cotes[$index] = $duelService->calculerCote($level_1, $level_2);
         }
 
         return $this->render('home/index.html.twig', [

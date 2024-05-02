@@ -7,6 +7,7 @@ use App\Entity\Duel;
 use App\Entity\Fighter;
 use App\Entity\User;
 use App\Form\BetFormType;
+use App\Service\DuelService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,8 +17,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DuelController extends AbstractController
 {
+    private $duelService;
+
+    public function __construct(DuelService $duelService)
+    {
+        $this->duelService = $duelService;
+    }
+    
     #[Route('/duel/{id}', name: 'app_duel')]
-    public function index($id, EntityManagerInterface $entityManager, SecurityBundleSecurity $security): Response
+    public function index($id, EntityManagerInterface $entityManager, SecurityBundleSecurity $security,DuelService $duelService): Response
     {
         $duelRepository = $entityManager->getRepository(Duel::class);
         $duel = $duelRepository->find($id);
@@ -30,7 +38,7 @@ class DuelController extends AbstractController
             $fighter2 = $duel->getFighter2();
             $level_2 = $fighter2->getLevel();
 
-            $cotes = $this->calculerCote($level_1, $level_2);
+            $cotes = $duelService->calculerCote($level_1, $level_2);
 
         if (!$duel || $duel->isStatus() == 0) {
             return $this->redirectToRoute('app_home');
