@@ -65,7 +65,7 @@ $comments = array(
             $comment = new Comment();
 
             $comment->setUser($this->getReference('user_' . $this->faker->numberBetween(0, 9)));
-            $comment->setDuel($this->getReference('duel_' . $this->faker->numberBetween(0, 29)));
+            $comment->setDuel($this->getReference('duel_' . $this->faker->numberBetween(0, 6)));
             $comment->setTitle($titles[$this->faker->numberBetween(0, 19)]);
             $comment->setComment($comments[$this->faker->numberBetween(0, 19)]);
             $comment->setCreated(new \DateTime());

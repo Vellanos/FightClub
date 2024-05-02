@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     public function index(EntityManagerInterface $entityManager): Response
     {
         $duelRepository = $entityManager->getRepository(Duel::class);
-        $duels = $duelRepository->findAll();
+        $duels = $duelRepository->findBy(['status' => 1]);
 
         $cotes = [];
 

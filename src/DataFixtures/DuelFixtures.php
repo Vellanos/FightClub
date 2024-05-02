@@ -20,27 +20,30 @@ class DuelFixtures extends AbstractFixtures implements DependentFixtureInterface
             "duel5.png"
         ];
 
+        $duelCount = 0;
 
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 14; $i += 2) {
             $duel = new Duel();
 
-            $fighter1 = $this->getReference('fighter_' . $this->faker->numberBetween(0, 13));
-            $fighter2 = $this->getReference('fighter_' . $this->faker->numberBetween(0, 13));
+            $fighter1 = $this->getReference('fighter_' . $i);
+            $fighter2 = $this->getReference('fighter_' . $i + 1);
 
-            while ($fighter1 == $fighter2) {
-                $fighter1 = $this->getReference('fighter_' . $this->faker->numberBetween(0, 13));
-                $fighter2 = $this->getReference('fighter_' . $this->faker->numberBetween(0, 13));
-            }
+            // while ($fighter1 == $fighter2) {
+            //     $fighter1 = $this->getReference('fighter_' . $this->faker->numberBetween(0, 13));
+            //     $fighter2 = $this->getReference('fighter_' . $this->faker->numberBetween(0, 13));
+            // }
 
             $duel->setFighter1($fighter1);
             $duel->setFighter2($fighter2);
-            $duel->setDate($this->faker->dateTimeBetween('+1 week', '+3 week'));
+            $duel->setDate($this->faker->dateTimeBetween(new \DateTime()));
             $duel->setPicture($picture[$this->faker->numberBetween(0, 4)]);
             $duel->setStatus(1);
 
             $manager->persist($duel);
 
-            $this->setReference('duel_' . $i, $duel);
+            $this->setReference('duel_' . $duelCount, $duel);
+
+            $duelCount = $duelCount + 1;
         }
 
         $manager->flush();
