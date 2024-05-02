@@ -1,5 +1,29 @@
 # FightClub Symfony
 
+## How to Simulate Matches and Bets
+
+Before we begin, please note that no page redirection/reload is implemented in the simulations of matches and bets. Consequently, front-end information will not be dynamically updated without at least a user action or a manual page reload.
+
+To simulate matches and bets, you need to use the following command:
+
+```bash
+php bin/console messenger:consume
+```
+
+Select option 2: scheduler_Simulation.
+This allows consuming Symfony messages and activating the simulation scheduler.
+A simulation is carried out every 30 seconds (modifiable in the file src/Scheduler/SimScheduleProvider.php).
+To stop the simulations, stop the messenger:consume in the terminal.
+
+Some useful commands to set up the scheduler (for informational purposes):
+
+```bash
+php bin/console make:message
+composer require symfony/scheduler
+```
+
+Link to the scheduler documentation: Symfony Scheduler Documentation
+
 ## Project Context
 
 Welcome to the final phase of the PHP arc! After developing your own MVC projects in PHP and exploring the Symfony framework, it's now time to showcase your skills by fully leveraging this framework.
