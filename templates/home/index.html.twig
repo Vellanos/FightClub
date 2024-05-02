@@ -4,40 +4,56 @@
 {% endblock %}
 
 {% block body %}
-
+    <div class="d-flex justify-content-center mt-3">
+        <input type="text" id="searchInput" class="form-control w-50" placeholder="Rechercher un combattant">
+    </div>
+    
     <div class="d-flex justify-content-center">
         <div class="card-wrapper d-flex flex-wrap justify-content-center">
             {% for duel in duels %}
-                <a href="{{ path('app_duel', {'id': duel.id}) }}" class="card-home">
-                    <img src="{{ asset('pictures/' ~ duel.fighter1.imageName) }}" class="img-fluid img-home" alt="fighter picture">
-                    <div class="card-body-home">
-                        <div class="d-flex flex-column align-items-center">
-                            <p class="font-weight-bolder">{{ duel.fighter1.firstname }} "{{ duel.fighter1.pseudo }}" {{ duel.fighter1.lastname }}</p>
-                            <p class="font-weight-bolder">VS</p>
-                            <p class="font-weight-bolder">{{ duel.fighter2.firstname }} "{{ duel.fighter2.pseudo }}" {{ duel.fighter2.lastname }}</p>
+                    <a href="{{ path('app_duel', {'id': duel.id}) }}" class="card-home duel-card" data-fighter1="{{ duel.fighter1.firstname }} {{ duel.fighter1.lastname }}" data-fighter2="{{ duel.fighter2.firstname }} {{ duel.fighter2.lastname }}" data-date="{{ duel.date|date('U') }}">
+                        <img src="{{ asset('pictures/' ~ duel.fighter1.imageName) }}" class="img-fluid img-home" alt="fighter picture">
+                        <div class="card-body-home">
+                            <div class="d-flex flex-column align-items-center">
+                                <p class="font-weight-bolder">{{ duel.fighter1.firstname }} "{{ duel.fighter1.pseudo }}" {{ duel.fighter1.lastname }}</p>
+                                <p class="font-weight-bolder">VS</p>
+                                <p class="font-weight-bolder">{{ duel.fighter2.firstname }} "{{ duel.fighter2.pseudo }}" {{ duel.fighter2.lastname }}</p>
+                            </div>
+                            <div class="cote-container">
+                                <div class="cote">
+                                    <p class="m-0 font-weight-bolder">{{ duel.fighter1.firstname }}</p>
+                                    <p class="m-0 font-weight-bolder">{{ cotes[loop.index0][0] }}</p>
+                                </div>
+                                <div class="d-flex flex-column align-items-center justify-content-center">
+                                    <p class="m-0 font-weight-bolder">{{ duel.date|date('d-m') }}</p>
+                                    <p class="m-0 font-weight-bolder">{{ duel.date|date('H') }}h{{ duel.date|date('i') }}</p>
+                                </div>
+                                <div class="cote">
+                                    <p class="m-0 font-weight-bolder">{{ duel.fighter2.firstname }}</p>
+                                    <p class="m-0 font-weight-bolder">{{ cotes[loop.index0][1] }}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="cote-container">
-                            <div class="cote">
-                                <p class="m-0 font-weight-bolder">{{ duel.fighter1.firstname }}</p>
-                                <p class="m-0 font-weight-bolder">{{ cotes[loop.index0][0] }}</p>
-                            </div>
-                            <div class="d-flex flex-column align-items-center justify-content-center">
-                                <p class="m-0 font-weight-bolder">{{ duel.date|date('d-m') }}</p>
-                                <p class="m-0 font-weight-bolder">{{ duel.date|date('H') }}h{{ duel.date|date('i') }}</p>
-                            </div>
-                            <div class="cote">
-                                <p class="m-0 font-weight-bolder">{{ duel.fighter2.firstname }}</p>
-                                <p class="m-0 font-weight-bolder">{{ cotes[loop.index0][1] }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
             {% endfor %}
         </div>
     </div>
-    {# Section de débogage #}
-    {# <div class="debugBox">
-        <h2>Debug</h2>
-        <pre>{{dump(cotes)}}</pre>
-    </div> #}
+
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function (e) {
+            let searchText = e.target.value.toLowerCase();
+            let duelCards = document.getElementsByClassName('duel-card');
+
+            for (let i = 0; i < duelCards.length; i++) {
+                let fighter1 = duelCards[i].getAttribute('data-fighter1').toLowerCase();
+                let fighter2 = duelCards[i].getAttribute('data-fighter2').toLowerCase();
+
+                if (fighter1.indexOf(searchText) !== -1 || fighter2.indexOf(searchText) !== -1) {
+                    duelCards[i].style.display = 'flex';
+                } else {
+                    duelCards[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
 {% endblock %}
