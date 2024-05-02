@@ -22,7 +22,8 @@ php bin/console make:message
 composer require symfony/scheduler
 ```
 
-Link to the scheduler documentation: Symfony Scheduler Documentation
+Link to the scheduler documentation: [Symfony Scheduler Documentation](https://symfony.com/doc/current/scheduler.html)
+
 
 ## Project Context
 
