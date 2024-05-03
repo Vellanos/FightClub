@@ -14,26 +14,32 @@
             <div class="mb-3">
                 {{ form_label(registrationForm.lastname, null, {'label_attr': {'class': 'visually-hidden'}}) }}
                 {{ form_widget(registrationForm.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Nom', 'style': 'text-align: center'}}) }}
+				{{ form_errors(registrationForm.lastname) }}
             </div>
             <div class="mb-3">
                 {{ form_label(registrationForm.firstname, null, {'label_attr': {'class': 'visually-hidden'}}) }}
                 {{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom', 'style': 'text-align: center'}}) }}
+				{{ form_errors(registrationForm.firstname) }}
             </div>
             <div class="mb-3">
                 {{ form_label(registrationForm.pseudo, null, {'label_attr': {'class': 'visually-hidden'}}) }}
                 {{ form_widget(registrationForm.pseudo, {'attr': {'class': 'form-control', 'placeholder': 'Pseudo', 'style': 'text-align: center'}}) }}
+				{{ form_errors(registrationForm.pseudo) }}
             </div>
             <div class="mb-3">
                 {{ form_label(registrationForm.wallet, null, {'label_attr': {'class': 'visually-hidden'}}) }}
                 {{ form_widget(registrationForm.wallet, {'attr': {'class': 'form-control', 'placeholder': 'Wallet', 'style': 'text-align: center'}}) }}
+				{{ form_errors(registrationForm.wallet) }}
             </div>
             <div class="mb-3">
                 {{ form_label(registrationForm.email, null, {'label_attr': {'class': 'visually-hidden'}}) }}
                 {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Email', 'style': 'text-align: center'}}) }}
+				{{ form_errors(registrationForm.email) }}
             </div>
             <div class="mb-3">
                 {{ form_label(registrationForm.plainPassword, null, {'label_attr': {'class': 'visually-hidden'}}) }}
                 {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe', 'style': 'text-align: center'}}) }}
+				{{ form_errors(registrationForm.plainPassword) }}
             </div>
             <div class="form-check mb-3 text-center">
                 {{ form_row(registrationForm.agreeTerms, {'label_attr': {'class': 'form-check-label'}}) }}
