@@ -1,24 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
-{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-	<h1>Register</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center mb-4">Inscription</h1>
 
-	{{ form_errors(registrationForm) }}
+            {{ form_errors(registrationForm) }}
 
-	{{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.lastname) }}
-    {{ form_row(registrationForm.firstname) }}
-    {{ form_row(registrationForm.pseudo) }}
-	{{ form_row(registrationForm.wallet) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-	{{ form_row(registrationForm.agreeTerms) }}
+            {{ form_start(registrationForm) }}
+            <div class="mb-3">
+                {{ form_label(registrationForm.lastname, null, {'label_attr': {'class': 'visually-hidden'}}) }}
+                {{ form_widget(registrationForm.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Nom', 'style': 'text-align: center'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(registrationForm.firstname, null, {'label_attr': {'class': 'visually-hidden'}}) }}
+                {{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom', 'style': 'text-align: center'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(registrationForm.pseudo, null, {'label_attr': {'class': 'visually-hidden'}}) }}
+                {{ form_widget(registrationForm.pseudo, {'attr': {'class': 'form-control', 'placeholder': 'Pseudo', 'style': 'text-align: center'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(registrationForm.wallet, null, {'label_attr': {'class': 'visually-hidden'}}) }}
+                {{ form_widget(registrationForm.wallet, {'attr': {'class': 'form-control', 'placeholder': 'Wallet', 'style': 'text-align: center'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(registrationForm.email, null, {'label_attr': {'class': 'visually-hidden'}}) }}
+                {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Email', 'style': 'text-align: center'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(registrationForm.plainPassword, null, {'label_attr': {'class': 'visually-hidden'}}) }}
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe', 'style': 'text-align: center'}}) }}
+            </div>
+            <div class="form-check mb-3 text-center">
+                {{ form_row(registrationForm.agreeTerms, {'label_attr': {'class': 'form-check-label'}}) }}
+            </div>
 
-	<button type="submit" class="btn">Register</button>
-	{{ form_end(registrationForm) }}
+            <div class="text-center">
+                <button type="submit" class="btn bg-red-details font-weight-bolder">Inscription</button>
+            </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
 {% endblock %}
