@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BetRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BetRepository::class)]
 class Bet
@@ -15,6 +16,10 @@ class Bet
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThan(
+        value: 0,
+        message: 'The bet must be higher than 0'
+    )]
     private ?float $bet_value = null;
 
     #[ORM\Column(length: 255)]

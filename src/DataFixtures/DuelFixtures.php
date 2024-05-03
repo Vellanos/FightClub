@@ -14,14 +14,6 @@ class DuelFixtures extends AbstractFixtures implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
 
-        $picture = [
-            "duel1.png",
-            "duel2.png",
-            "duel3.png",
-            "duel4.png",
-            "duel5.png"
-        ];
-
         $duelCount = 0;
 
         for ($i = 0; $i < 14; $i += 2) {
@@ -38,7 +30,6 @@ class DuelFixtures extends AbstractFixtures implements DependentFixtureInterface
             $duel->setFighter1($fighter1);
             $duel->setFighter2($fighter2);
             $duel->setDate(new \DateTime());
-            $duel->setPicture($picture[$this->faker->numberBetween(0, 4)]);
             $duel->setStatus(1);
 
             $manager->persist($duel);

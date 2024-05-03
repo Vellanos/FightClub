@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -24,6 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\Email(message: 'The email "{{ value }}" is not a valid email')]
     private ?string $email = null;
 
     /**
@@ -39,15 +41,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 2,
+        max: 30,
+        minMessage: 'Your last name must be at least {{ limit }} characters long',
+        maxMessage: 'Your last name cannot be longer than {{ limit }} characters')]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Your first name must be at least {{ limit }} characters long',
+        maxMessage: 'Your first name cannot be longer than {{ limit }} characters')]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 2,
+        max: 30,
+        minMessage: 'Your pseudo must be at least {{ limit }} characters long',
+        maxMessage: 'Your pseudo cannot be longer than {{ limit }} characters')]
     private ?string $pseudo = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Please enter a wallet amount')]
+    #[Assert\Type(
+        type: 'float',
+        message: 'The value {{ value }} is not a valid {{ type }}'
+    )]
     private ?float $wallet = null;
 
     /**
@@ -61,12 +83,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $comments;
-
-    /**
-     * @var Collection<int, Contact>
-     */
-    #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'user', orphanRemoval: true)]
-    private Collection $contacts;
 
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
     #[Vich\UploadableField(mapping: 'user_picture', fileNameProperty: 'imageName')]
@@ -82,7 +98,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->bets = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -262,36 +277,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Contact>
-     */
-    public function getContacts(): Collection
-    {
-        return $this->contacts;
-    }
-
-    public function addContact(Contact $contact): static
-    {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts->add($contact);
-            $contact->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContact(Contact $contact): static
-    {
-        if ($this->contacts->removeElement($contact)) {
-            // set the owning side to null (unless already changed)
-            if ($contact->getUser() === $this) {
-                $contact->setUser(null);
             }
         }
 

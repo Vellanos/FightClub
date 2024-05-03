@@ -11,7 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -33,7 +33,7 @@ class UserCrudController extends AbstractCrudController implements EventSubscrib
             TextField::new('lastname'),
             TextField::new('firstname'),
             TextField::new('pseudo'),
-            IntegerField::new('wallet'),
+            NumberField::new('wallet'),
             TextField::new('password')
             ->hideOnIndex()
             ->setFormType(PasswordType::class),

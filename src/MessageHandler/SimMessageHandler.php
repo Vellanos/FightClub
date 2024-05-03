@@ -117,7 +117,6 @@ final class SimMessageHandler
             $date = new \DateTime();
             $date->modify('+5 minutes');
             $newDuel->setDate($date);
-            $newDuel->setPicture('duel' . rand(1, 5) . 'png');
             $newDuel->setStatus(1);
             $newDuel->setFighter1($fighters[$i]);
             $newDuel->setFighter2($fighters[$i + 1]);

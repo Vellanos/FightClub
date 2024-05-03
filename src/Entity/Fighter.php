@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FighterRepository::class)]
 #[Vich\Uploadable]
@@ -19,15 +20,41 @@ class Fighter
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'The fighter\'s last name must be at least {{ limit }} characters long',
+        maxMessage: 'The fighter\'s last name cannot be longer than {{ limit }} characters'
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'The fighter\'s first name must be at least {{ limit }} characters long',
+        maxMessage: 'The fighter\'s first name cannot be longer than {{ limit }} characters'
+    )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'The fighter\'s pseudo must be at least {{ limit }} characters long',
+        maxMessage: 'The fighter\'s pseudo cannot be longer than {{ limit }} characters'
+    )]
     private ?string $pseudo = null;
 
     #[ORM\Column]
+    #[Assert\LessThanOrEqual(
+        value: 20,
+        message: 'The level must be smaller than 20'
+    )]
+    #[Assert\GreaterThanOrEqual(
+        value: 1,
+        message: 'The level must be higher than 1'
+    )]
     private ?int $level = null;
 
     /**
@@ -53,9 +80,17 @@ class Fighter
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThanOrEqual(
+        value: 0,
+        message: 'The number of victory must be higher than 0'
+    )]
     private ?int $victory = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThanOrEqual(
+        value: 0,
+        message: 'The number of defeat must be higher than 0'
+    )]
     private ?int $defeat = null;
 
     public function __construct()

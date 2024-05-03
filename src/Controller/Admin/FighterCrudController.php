@@ -17,7 +17,6 @@ class FighterCrudController extends AbstractCrudController
         return Fighter::class;
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -26,6 +25,8 @@ class FighterCrudController extends AbstractCrudController
             TextField::new('firstname'),
             TextField::new('pseudo'),
             IntegerField::new('level'),
+            IntegerField::new('victory'),
+            IntegerField::new('defeat'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->onlyOnForms(),
             ImageField::new('imageName')->setBasePath('/pictures')->setUploadDir('/public')->hideOnForm(),
         ];
