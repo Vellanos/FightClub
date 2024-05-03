@@ -11,6 +11,8 @@ use App\Service\DuelService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
+date_default_timezone_set('Europe/Paris');
+
 #[AsMessageHandler]
 final class SimMessageHandler
 {

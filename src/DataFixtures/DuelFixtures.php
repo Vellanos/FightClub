@@ -6,6 +6,8 @@ use App\Entity\Duel;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
+date_default_timezone_set('Europe/Paris');
+
 class DuelFixtures extends AbstractFixtures implements DependentFixtureInterface
 {
 
@@ -35,7 +37,7 @@ class DuelFixtures extends AbstractFixtures implements DependentFixtureInterface
 
             $duel->setFighter1($fighter1);
             $duel->setFighter2($fighter2);
-            $duel->setDate($this->faker->dateTimeBetween(new \DateTime()));
+            $duel->setDate(new \DateTime());
             $duel->setPicture($picture[$this->faker->numberBetween(0, 4)]);
             $duel->setStatus(1);
 

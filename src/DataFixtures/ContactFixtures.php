@@ -6,6 +6,8 @@ use App\Entity\Contact;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
+date_default_timezone_set('Europe/Paris');
+
 class ContactFixtures extends AbstractFixtures implements DependentFixtureInterface
 {
 

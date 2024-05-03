@@ -6,6 +6,8 @@ use App\Entity\Comment;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
+date_default_timezone_set('Europe/Paris');
+
 class CommentFixtures extends AbstractFixtures implements DependentFixtureInterface
 {
 

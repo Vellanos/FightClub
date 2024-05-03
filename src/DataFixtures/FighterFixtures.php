@@ -5,6 +5,8 @@ namespace App\DataFixtures;
 use App\Entity\Fighter;
 use Doctrine\Persistence\ObjectManager;
 
+date_default_timezone_set('Europe/Paris');
+
 class FighterFixtures extends AbstractFixtures
 {
 

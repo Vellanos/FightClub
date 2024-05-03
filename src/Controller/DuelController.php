@@ -15,6 +15,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\SecurityBundle\Security as SecurityBundleSecurity;
 use Symfony\Component\HttpFoundation\Request;
 
+date_default_timezone_set('Europe/Paris');
+
 class DuelController extends AbstractController
 {
     private $duelService;

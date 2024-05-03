@@ -5,6 +5,8 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 
+date_default_timezone_set('Europe/Paris');
+
 class UserFixtures extends AbstractFixtures
 {
 
