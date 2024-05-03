@@ -39,7 +39,7 @@
 					</div>
 				</div>
 			</div>
-
+			{% if history_bets is not empty %}
 			<div class="container mt-5">
 				<div class="row">
 					<div class="col-md-6 offset-md-3">
@@ -56,7 +56,7 @@
 													{{ active_bet.date|date('d-m-y')}}
 													à
 													{{ active_bet.date|date('H') }}h{{ active_bet.date|date('i') }}</p>
-													<span class="badge text-bg-warning">EN COURS</span>
+												<span class="badge text-bg-warning">EN COURS</span>
 											</div>
 											<p>Combat :
 												{{ active_bet.duel.fighter1.pseudo}}
@@ -73,56 +73,52 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="container mt-5">
-					<div class="row">
-						<div class="col-md-6 offset-md-3">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Vos paris terminés</h5>
-								</div>
-								<div class="card-body">
-									<ul class="list-group">
-										{% for history_bet in history_bets %}
-											{% if history_bet.gain > 0 %}
-												<li class="list-group-item mb-1" style="background-color: #29b237;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;color: #252525">
-												{% else %}
-													<li class="list-group-item mb-1" style="background-color: #d40a00;box-shadow:rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; color: #FAFAFA">
-													{% endif %}
-													<div class="d-flex justify-content-between align-items-center">
-														<p>Date :
-															{{ history_bet.date|date('d-m-y')}}
-															à
-															{{ history_bet.date|date('H') }}h{{ history_bet.date|date('i') }}</p>
-														{% if history_bet.gain > 0 %}
-															<span class="badge text-bg-success">VICTOIRE</span>
-														{% else %}
-															<span class="badge text-bg-danger">DEFAITE</span>
+				{% endif %}
+				{% if history_bets is not empty %}
+					<div class="container mt-5">
+						<div class="row">
+							<div class="col-md-6 offset-md-3">
+								<div class="card">
+									<div class="card-header">
+										<h5 class="card-title">Vos paris terminés</h5>
+									</div>
+									<div class="card-body">
+										<ul class="list-group">
+											{% for history_bet in history_bets %}
+												{% if history_bet.gain > 0 %}
+													<li class="list-group-item mb-1" style="background-color: #29b237;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;color: #252525">
+													{% else %}
+														<li class="list-group-item mb-1" style="background-color: #d40a00;box-shadow:rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; color: #FAFAFA">
 														{% endif %}
-													</div>
+														<div class="d-flex justify-content-between align-items-center">
+															<p>Date :
+																{{ history_bet.date|date('d-m-y')}}
+																à
+																{{ history_bet.date|date('H') }}h{{ history_bet.date|date('i') }}</p>
+															{% if history_bet.gain > 0 %}
+																<span class="badge text-bg-success">VICTOIRE</span>
+															{% else %}
+																<span class="badge text-bg-danger">DEFAITE</span>
+															{% endif %}
+														</div>
 
-													<p>Combat :
-														{{ history_bet.duel.fighter1.pseudo}}
-														contre
-														{{ history_bet.duel.fighter2.pseudo}}</p>
-													<p>Votre Bet :
-														{{ history_bet.betValue}}€</p>
-													<p>Votre combattant :
-														{{ history_bet.fighter.pseudo}}</p>
-													<p>Vos gains :
-														{{ history_bet.gain}}€</p>
-												</li>
-											{% endfor %}
-										</ul>
+														<p>Combat :
+															{{ history_bet.duel.fighter1.pseudo}}
+															contre
+															{{ history_bet.duel.fighter2.pseudo}}</p>
+														<p>Votre Bet :
+															{{ history_bet.betValue}}€</p>
+														<p>Votre combattant :
+															{{ history_bet.fighter.pseudo}}</p>
+														<p>Vos gains :
+															{{ history_bet.gain}}€</p>
+													</li>
+												{% endfor %}
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						{% endif %}
 					{% endif %}
-
-					{# Section de débogage #}
-					<div class="debugBox">
-						<h2>Debug</h2>
-						<pre>{{dump(active_bets)}}</pre>
-					</div>
 				{% endblock %}
